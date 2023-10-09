@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const YoutubeForm = () => {
   const formik = useFormik({
@@ -9,28 +10,39 @@ const YoutubeForm = () => {
       channel: "",
     },
     onSubmit: (values) => console.log(values),
-    validate: (values) => {
-      // values.name, values.email, values.channel
-      // errors.name, errors.email, errors.channel
-      // Eg: errors.name = 'Name is required';
-      const errors = {};
-      if (!values.name) {
-        errors.name = "Name Required";
-      }
+    //Form validation using Yup Validation Schema with Formik
+    validationSchema: (_) =>
+      Yup.object({
+        name: Yup.string().required("Required Name!"),
+        email: Yup.string()
+          .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gi)
+          .email("Invalid Email!")
+          .required("Required Email!"),
+        channel: Yup.string().required("Required Channel!"),
+      }),
+    //Form validation using only with Formik
+    // validate: (values) => {
+    //   // values.name, values.email, values.channel
+    //   // errors.name, errors.email, errors.channel
+    //   // Eg: errors.name = 'Name is required';
+    //   const errors = {};
+    //   if (!values.name) {
+    //     errors.name = "Name Required";
+    //   }
 
-      if (!values.email) {
-        errors.email = "Email Required";
-      } else if (
-        !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gi.test(values.email) // regex algo to validate correct email format
-      ) {
-        errors.email = "Invalid email format";
-      }
-      if (!values.channel) {
-        errors.channel = "Channel Required";
-      }
-      // Finally returning errors as object of the form field
-      return errors;
-    },
+    //   if (!values.email) {
+    //     errors.email = "Email Required";
+    //   } else if (
+    //     !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gi.test(values.email) // regex algo to validate correct email format
+    //   ) {
+    //     errors.email = "Invalid email format";
+    //   }
+    //   if (!values.channel) {
+    //     errors.channel = "Channel Required";
+    //   }
+    //   // Finally returning errors as object of the form field
+    //   return errors;
+    // },
   });
 
   console.log("formik obj: ", formik);
