@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form } from "formik";
+import { useFormik, Formik, Form, Field, useFormik } from "formik";
 import * as Yup from "yup";
 
 const initialValues = {
@@ -21,6 +21,7 @@ const validationSchema = (_) =>
 const onSubmit = (values) => console.log(values);
 
 const NewForm = () => {
+  const formik = useFormik();
   return (
     <Formik
       initialValues={initialValues}
@@ -33,36 +34,21 @@ const NewForm = () => {
         <Form>
           <div className="form-control">
             <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              {...formik.getFieldProps("name")} // replacing onChange, onBlur, value calls since the pattern is similar with single line of code - DRY principle
-            />
+            <Field type="text" id="name" name="name" />
             {formik.errors.name && formik.touched.name ? (
               <div className="error">Invalid Name</div>
             ) : null}
           </div>
           <div className="form-control">
             <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              {...formik.getFieldProps("email")} // replacing onChange, onBlur, value calls since the pattern is similar with single line of code - DRY principle
-            />
+            <Field type="email" id="email" name="email" />
             {formik.errors.email && formik.touched.email ? (
               <div className="error">Invalid Email</div>
             ) : null}
           </div>
           <div className="form-control">
             <label htmlFor="channel">Channel</label>
-            <input
-              type="text"
-              id="channel"
-              name="channel"
-              {...formik.getFieldProps("channel")} // replacing onChange, onBlur, value calls since the pattern is similar with single line of code - DRY principle
-            />
+            <Field type="text" id="channel" name="channel" />
             {formik.errors.channel && formik.touched.channel ? (
               <div className="error">Invalid Channel</div>
             ) : null}
