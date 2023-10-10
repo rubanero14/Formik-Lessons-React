@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const OldYoutubeForm = () => {
+const OldForm = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -116,4 +116,4 @@ const OldYoutubeForm = () => {
     </>
   );
 };
-export default OldYoutubeForm;
+export default OldForm;

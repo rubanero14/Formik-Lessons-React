@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import YoutubeForm from "./components/YoutubeForm";
-import OldYoutubeForm from "./components/OldYoutubeForm";
+import NewForm from "./components/NewForm";
+import OldForm from "./components/OldForm";
 import "./style.css";
 
 export function App(props) {
@@ -15,8 +15,8 @@ export function App(props) {
         {!toggleApps ? "New " : "Old "} YoutubeForm
       </button>
       <br />
-      {toggleApps && <YoutubeForm />}
-      {!toggleApps && <OldYoutubeForm />}
+      {toggleApps && <NewForm />}
+      {!toggleApps && <OldForm />}
     </div>
   );
 }

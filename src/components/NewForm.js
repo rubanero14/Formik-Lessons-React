@@ -20,7 +20,7 @@ const validationSchema = (_) =>
 
 const onSubmit = (values) => console.log(values);
 
-const YoutubeForm = () => {
+const NewForm = () => {
   return (
     <Formik
       initialValues={initialValues}
@@ -85,4 +85,4 @@ const YoutubeForm = () => {
     </Formik>
   );
 };
-export default YoutubeForm;
+export default NewForm;
