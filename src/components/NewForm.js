@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
 const initialValues = {
@@ -30,7 +30,7 @@ const NewForm = () => {
       <h1>New Youtube Form</h1>
       <br />
       <div className="form-wrapper">
-        <form onSubmit={formik.handleSubmit}>
+        <Form>
           <div className="form-control">
             <label htmlFor="name">Name</label>
             <input
@@ -80,7 +80,7 @@ const NewForm = () => {
             Email: {formik.values.email} <br />
             Channel: {formik.values.channel}
           </code>
-        </form>
+        </Form>
       </div>
     </Formik>
   );
