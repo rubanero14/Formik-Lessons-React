@@ -2,7 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const YoutubeForm = () => {
+const OldYoutubeForm = () => {
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -20,6 +20,29 @@ const YoutubeForm = () => {
           .required("Required Email!"),
         channel: Yup.string().required("Required Channel!"),
       }),
+    //Form validation using only with Formik
+    // validate: (values) => {
+    //   // values.name, values.email, values.channel
+    //   // errors.name, errors.email, errors.channel
+    //   // Eg: errors.name = 'Name is required';
+    //   const errors = {};
+    //   if (!values.name) {
+    //     errors.name = "Name Required";
+    //   }
+
+    //   if (!values.email) {
+    //     errors.email = "Email Required";
+    //   } else if (
+    //     !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gi.test(values.email) // regex algo to validate correct email format
+    //   ) {
+    //     errors.email = "Invalid email format";
+    //   }
+    //   if (!values.channel) {
+    //     errors.channel = "Channel Required";
+    //   }
+    //   // Finally returning errors as object of the form field
+    //   return errors;
+    // },
   });
 
   console.log("formik obj: ", formik);
@@ -29,7 +52,7 @@ const YoutubeForm = () => {
 
   return (
     <>
-      <h1>New Youtube Form</h1>
+      <h1>Old Youtube Form</h1>
       <br />
       <div className="form-wrapper">
         <form onSubmit={formik.handleSubmit}>
@@ -39,7 +62,9 @@ const YoutubeForm = () => {
               type="text"
               id="name"
               name="name"
-              {...formik.getFieldProps("name")} // replacing onChange, onBlur, value calls since the pattern is similar with single line of code - DRY principle
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.name}
             />
             {formik.errors.name && formik.touched.name ? (
               <div className="error">Invalid Name</div>
@@ -51,7 +76,9 @@ const YoutubeForm = () => {
               type="email"
               id="email"
               name="email"
-              {...formik.getFieldProps("email")} // replacing onChange, onBlur, value calls since the pattern is similar with single line of code - DRY principle
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
             />
             {formik.errors.email && formik.touched.email ? (
               <div className="error">Invalid Email</div>
@@ -63,7 +90,9 @@ const YoutubeForm = () => {
               type="text"
               id="channel"
               name="channel"
-              {...formik.getFieldProps("channel")} // replacing onChange, onBlur, value calls since the pattern is similar with single line of code - DRY principle
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.channel}
             />
             {formik.errors.channel && formik.touched.channel ? (
               <div className="error">Invalid Channel</div>
@@ -87,4 +116,4 @@ const YoutubeForm = () => {
     </>
   );
 };
-export default YoutubeForm;
+export default OldYoutubeForm;

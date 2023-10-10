@@ -15,9 +15,8 @@ code {
 
 .App {
   padding-top: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  text-align: center;
 }
 
 label {
@@ -57,4 +56,10 @@ textarea {
 
 button {
   margin-right: 5px;
+}
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-self: center;
 }
