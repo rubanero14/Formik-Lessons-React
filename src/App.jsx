@@ -12,7 +12,7 @@ export function App(props) {
   return (
     <div className="App">
       <button onClick={toggleYoutubeForms} type="button">
-        {!toggleApps ? "New " : "Old "} YoutubeForm
+        {!toggleApps ? "New " : "Old "} Form
       </button>
       <br />
       {toggleApps && <NewForm />}
