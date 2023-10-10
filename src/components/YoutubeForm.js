@@ -1,34 +1,32 @@
 import React from "react";
-import { useFormik } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 
-const YoutubeForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      channel: "",
-    },
-    onSubmit: (values) => console.log(values),
-    //Form validation using Yup Validation Schema with Formik
-    validationSchema: (_) =>
-      Yup.object({
-        name: Yup.string().required("Required Name!"),
-        email: Yup.string()
-          .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gi)
-          .email("Invalid Email!")
-          .required("Required Email!"),
-        channel: Yup.string().required("Required Channel!"),
-      }),
+const initialValues = {
+  name: "",
+  email: "",
+  channel: "",
+};
+
+const validationSchema = (_) =>
+  Yup.object({
+    name: Yup.string().required("Required Name!"),
+    email: Yup.string()
+      .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gi)
+      .email("Invalid Email!")
+      .required("Required Email!"),
+    channel: Yup.string().required("Required Channel!"),
   });
 
-  console.log("formik obj: ", formik);
-  console.log("formik values: ", formik.values);
-  console.log("formik errors: ", formik.errors);
-  console.log("formik touched: ", formik.touched);
+const onSubmit = (values) => console.log(values);
 
+const YoutubeForm = () => {
   return (
-    <>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
       <h1>New Youtube Form</h1>
       <br />
       <div className="form-wrapper">
@@ -84,7 +82,7 @@ const YoutubeForm = () => {
           </code>
         </form>
       </div>
-    </>
+    </Formik>
   );
 };
 export default YoutubeForm;
